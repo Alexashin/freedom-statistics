@@ -81,7 +81,7 @@ export function OverviewAnalyticsView() {
 
         <Grid xs={12} md={6} lg={4}>
           <AnalyticsCurrentVisits
-            title="Current visits"
+            title="Статистики просмотра телевизионного контента"
             chart={{
               series: [
                 { label: 'America', value: 3500 },
@@ -95,7 +95,7 @@ export function OverviewAnalyticsView() {
 
         <Grid xs={12} md={6} lg={8}>
           <AnalyticsWebsiteVisits
-            title="Website visits"
+            title="Статистика востребованности телевизионных каналов"
             subheader="(+43%) than last year"
             chart={{
               categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
@@ -109,7 +109,7 @@ export function OverviewAnalyticsView() {
 
         <Grid xs={12} md={6} lg={8}>
           <AnalyticsConversionRates
-            title="Conversion rates"
+            title="Статистика востребованности телепердач"
             subheader="(+43%) than last year"
             chart={{
               categories: ['Italy', 'Japan', 'China', 'Canada', 'France'],
