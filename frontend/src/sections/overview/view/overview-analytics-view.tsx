@@ -20,7 +20,7 @@ export function OverviewAnalyticsView() {
   return (
     <DashboardContent maxWidth="xl">
       <Typography variant="h4" sx={{ mb: { xs: 3, md: 5 } }}>
-        Hi, Welcome back 👋
+        Рады снова Вас видеть! 👋
       </Typography>
 
       <Grid container spacing={3}>
@@ -135,17 +135,10 @@ export function OverviewAnalyticsView() {
           />
         </Grid>
 
-        <Grid xs={12} md={6} lg={8}>
-          <AnalyticsNews title="News" list={_posts.slice(0, 5)} />
-        </Grid>
-
-        <Grid xs={12} md={6} lg={4}>
-          <AnalyticsOrderTimeline title="Order timeline" list={_timeline} />
-        </Grid>
 
         <Grid xs={12} md={6} lg={4}>
           <AnalyticsTrafficBySite
-            title="Traffic by site"
+            title="Источник траффика"
             list={[
               { value: 'facebook', label: 'Facebook', total: 323234 },
               { value: 'google', label: 'Google', total: 341212 },
@@ -155,9 +148,6 @@ export function OverviewAnalyticsView() {
           />
         </Grid>
 
-        <Grid xs={12} md={6} lg={8}>
-          <AnalyticsTasks title="Tasks" list={_tasks} />
-        </Grid>
       </Grid>
     </DashboardContent>
   );
