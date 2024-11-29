@@ -41,33 +41,57 @@ export function UserView() {
 
   return (
     <DashboardContent>
-      <Box display="flex" alignItems="center" mb={5}>
+      <Box sx={{ mb: 6 }}>
         <Typography variant="h4" flexGrow={1}>
-          Users
+          Связь пакетов и каналов
         </Typography>
-        <Button
-          variant="contained"
-          color="inherit"
-          startIcon={<Iconify icon="mingcute:add-line" />}
-        >
-          New user
-        </Button>
-      </Box>
-
-      <Card>
-        <UserTableToolbar
-          numSelected={table.selected.length}
-          filterName={filterName}
-          onFilterName={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setFilterName(event.target.value);
-            table.onResetPage();
-          }}
-        />
-
+        <Card>
         <Scrollbar>
-          <TableContainer sx={{ overflow: 'unset' }}>
-            <Table sx={{ minWidth: 800 }}>
-              <UserTableHead
+          <TableContainer>
+            <Table sx={{ minWidth: 600 }}>
+            <UserTableHead
+                  order={table.order}
+                  orderBy={table.orderBy}
+                  rowCount={_users.length}
+                  numSelected={table.selected.length}
+                  onSort={table.onSort}
+                  onSelectAllRows={(checked) =>
+                    table.onSelectAllRows(
+                      checked,
+                      _users.map((user) => user.id)
+                    )
+                  }
+                  headLabel={[
+                  { id: 'packageName', label: 'Название пакета' },
+                  { id: 'channelId', label: 'ID канала' },
+                ]}
+              />
+          
+            </Table>
+          </TableContainer>
+        </Scrollbar>
+        <TablePagination
+          component="div"
+          page={table.page}
+          count={dataFiltered.length}
+          rowsPerPage={table.rowsPerPage}
+          onPageChange={table.onChangePage}
+          rowsPerPageOptions={[5, 10, 25]}
+          onRowsPerPageChange={table.onChangeRowsPerPage}
+        />
+      </Card>
+    </Box>
+
+
+    <Box sx={{ mb: 6 }}>
+      <Typography variant="h4" flexGrow={1}>
+        Информация о клиентах 
+      </Typography>
+      <Card>
+      <Scrollbar>
+        <TableContainer>
+          <Table sx={{ minWidth: 600 }}>
+          <UserTableHead
                 order={table.order}
                 orderBy={table.orderBy}
                 rowCount={_users.length}
@@ -80,50 +104,123 @@ export function UserView() {
                   )
                 }
                 headLabel={[
-                  { id: 'name', label: 'Name' },
-                  { id: 'company', label: 'Company' },
-                  { id: 'role', label: 'Role' },
-                  { id: 'isVerified', label: 'Verified', align: 'center' },
-                  { id: 'status', label: 'Status' },
-                  { id: '' },
-                ]}
-              />
-              <TableBody>
-                {dataFiltered
-                  .slice(
-                    table.page * table.rowsPerPage,
-                    table.page * table.rowsPerPage + table.rowsPerPage
-                  )
-                  .map((row) => (
-                    <UserTableRow
-                      key={row.id}
-                      row={row}
-                      selected={table.selected.includes(row.id)}
-                      onSelectRow={() => table.onSelectRow(row.id)}
-                    />
-                  ))}
-
-                <TableEmptyRows
-                  height={68}
-                  emptyRows={emptyRows(table.page, table.rowsPerPage, _users.length)}
-                />
-
-                {notFound && <TableNoData searchQuery={filterName} />}
-              </TableBody>
+                { id: 'packageName', label: 'ID клиента' },
+                { id: 'channelId', label: 'Андрес' },
+                { id: 'channelId', label: 'Пол' },
+                { id: 'channelId', label: 'Возрастной диапозон' },
+              ]}
+            />
+        
             </Table>
           </TableContainer>
         </Scrollbar>
-
         <TablePagination
           component="div"
           page={table.page}
-          count={_users.length}
+          count={dataFiltered.length}
           rowsPerPage={table.rowsPerPage}
           onPageChange={table.onChangePage}
           rowsPerPageOptions={[5, 10, 25]}
           onRowsPerPageChange={table.onChangeRowsPerPage}
         />
       </Card>
+    </Box>
+
+    <Box sx={{ mb: 6 }}>
+      <Typography variant="h4" flexGrow={1}>
+        Информация о домах
+      </Typography>
+      <Card>
+      <Scrollbar>
+        <TableContainer>
+          <Table sx={{ minWidth: 600 }}>
+          <UserTableHead
+                order={table.order}
+                orderBy={table.orderBy}
+                rowCount={_users.length}
+                numSelected={table.selected.length}
+                onSort={table.onSort}
+                onSelectAllRows={(checked) =>
+                  table.onSelectAllRows(
+                    checked,
+                    _users.map((user) => user.id)
+                  )
+                }
+                headLabel={[
+                { id: 'packageName', label: 'Адрес' },
+                { id: 'channelId', label: 'Кол-во квартир' },
+                { id: 'channelId', label: 'Кол-во подъездов' },
+                { id: 'channelId', label: 'Кол-во этажей' },
+              ]}
+            />
+        
+            </Table>
+          </TableContainer>
+        </Scrollbar>
+        <TablePagination
+          component="div"
+          page={table.page}
+          count={dataFiltered.length}
+          rowsPerPage={table.rowsPerPage}
+          onPageChange={table.onChangePage}
+          rowsPerPageOptions={[5, 10, 25]}
+          onRowsPerPageChange={table.onChangeRowsPerPage}
+        />
+      </Card>
+    </Box>
+
+
+
+    <Box sx={{ mb: 6 }}>
+      <Typography variant="h4" flexGrow={1}>
+        Статистика просмотров телепередач
+      </Typography>
+      <Card>
+      <Scrollbar>
+        <TableContainer>
+          <Table sx={{ minWidth: 600 }}>
+          <UserTableHead
+                order={table.order}
+                orderBy={table.orderBy}
+                rowCount={_users.length}
+                numSelected={table.selected.length}
+                onSort={table.onSort}
+                onSelectAllRows={(checked) =>
+                  table.onSelectAllRows(
+                    checked,
+                    _users.map((user) => user.id)
+                  )
+                }
+                headLabel={[
+                { id: 'packageName', label: 'ID клиента' },
+                { id: 'channelId', label: 'ID устройства' },
+                { id: 'channelId', label: 'Выбор канала' },
+                { id: 'channelId', label: 'ID канала' },
+                { id: 'channelId', label: 'Название канала' },
+                { id: 'channelId', label: 'Время начала программы' },
+                { id: 'channelId', label: 'Время окончания программы' },
+                { id: 'channelId', label: 'Продолжительность сеанса' },
+                { id: 'channelId', label: 'Категория' },
+                { id: 'channelId', label: 'Подкатегория' },
+              ]}
+            />
+        
+          </Table>
+        </TableContainer>
+      </Scrollbar>
+      <TablePagination
+        component="div"
+        page={table.page}
+        count={dataFiltered.length}
+        rowsPerPage={table.rowsPerPage}
+        onPageChange={table.onChangePage}
+        rowsPerPageOptions={[5, 10, 25]}
+        onRowsPerPageChange={table.onChangeRowsPerPage}
+      />
+    </Card>
+  </Box>
+
+    
     </DashboardContent>
   );
 }
